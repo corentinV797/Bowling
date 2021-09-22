@@ -13,17 +13,13 @@ class GameTest {
 
 	@Test
 	void getZeroScore() {
-		for (int i = 0; i < 20; i++) {
-			g.roll(0);
-		}
+		scoreSeveralPins(20, 0);
 		assertEquals(0, g.score());
 	}
 	
 	@Test
 	void onePinEachRoll() {
-		for (int i = 0; i < 20; i++) {
-			g.roll(1);
-		}
+		scoreSeveralPins(20, 1);
 		assertEquals(20, g.score());
 	}
 	
@@ -33,10 +29,13 @@ class GameTest {
 		g.roll(9);
 		g.roll(4);
 		g.roll(3);
-		for (int i = 0; i < 16; i++) {
-			g.roll(1);
-		}
+		scoreSeveralPins(16, 1);
 		assertEquals(37, g.score());
 	}
 
+	void scoreSeveralPins(int rolls_number, int value) {
+		for (int i = 0; i < rolls_number; i++) {
+			g.roll(value);
+		}
+	}
 }
