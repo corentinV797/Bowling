@@ -1,16 +1,14 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Game {
-	private List<Integer> rolls = new ArrayList<Integer>();
+	private int[] rolls = new int[21];
+	private int roll_counter = 0;
 	
 	public int score() {
 		int score = 0;
 		int frame_number = 0;
 		for (int frame_counter = 0; frame_counter < 10; frame_counter++) {
-			int frame_score = rolls.get(frame_number) + rolls.get(frame_number + 1);
+			int frame_score = rolls[frame_number] + rolls[frame_number + 1];
 			if (frame_score == 10) {
-				score+=(10 + rolls.get(frame_number + 2));
+				score+=(10 + rolls[frame_number + 2]);
 			} else {
 				score+=frame_score;
 			}
@@ -20,6 +18,6 @@ public class Game {
 	}
 	
 	public void roll(int pins) {
-		rolls.add(pins);
+		rolls[roll_counter++] = pins;
 	}
 }
