@@ -32,6 +32,15 @@ class GameTest {
 		scoreSeveralPins(16, 1);
 		assertEquals(37, g.score());
 	}
+	
+	@Test
+	void oneStrikeRoll() {
+		g.roll(10);
+		g.roll(4);
+		g.roll(3);
+		scoreSeveralPins(16, 0);
+		assertEquals(24, g.score());
+	}
 
 	void scoreSeveralPins(int rolls_number, int value) {
 		for (int i = 0; i < rolls_number; i++) {

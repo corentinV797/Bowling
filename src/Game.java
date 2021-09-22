@@ -7,7 +7,11 @@ public class Game {
 		int frame_number = 0;
 		for (int frame_counter = 0; frame_counter < 10; frame_counter++) {
 			int frame_score = rolls[frame_number] + rolls[frame_number + 1];
-			if (frame_score == 10) {
+			if (rolls[frame_number] == 10) {
+				score+=(10 + rolls[frame_number + 1] + rolls[frame_number + 2]);
+				frame_number++;
+				continue;
+			} else if (frame_score == 10) {
 				score+=(10 + rolls[frame_number + 2]);
 			} else {
 				score+=frame_score;
