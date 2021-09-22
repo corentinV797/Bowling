@@ -1,12 +1,21 @@
+import java.util.ArrayList;
+import java.util.List;
 
 public class Game {
-	private int pin_down_counter = 0;
+	private List<Integer> rolls = new ArrayList<Integer>();
 	
 	public int score() {
-		return pin_down_counter;
+		int score = 0;
+		int frame_number = 0;
+		for (int frame_counter = 0; frame_counter < 10; frame_counter++) {
+			int frame_score = rolls.get(frame_number) + rolls.get(frame_number + 1);
+				score+=frame_score;
+			frame_number+=2;
+		}
+		return score;
 	}
 	
 	public void roll(int pins) {
-		pin_down_counter+=pins;
+		rolls.add(pins);
 	}
 }
