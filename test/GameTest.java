@@ -1,13 +1,18 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class GameTest {
-
+	private Game g;
+	
+	@BeforeEach
+	void createGame() {
+		g = new Game();
+	}
 
 	@Test
 	void getZeroScore() {
-		Game g = new Game();
 		for (int i = 0; i < 20; i++) {
 			g.roll(0);
 		}
@@ -16,7 +21,6 @@ class GameTest {
 	
 	@Test
 	void onePinEachRoll() {
-		Game g = new Game();
 		for (int i = 0; i < 20; i++) {
 			g.roll(1);
 		}
@@ -25,7 +29,6 @@ class GameTest {
 	
 	@Test
 	void oneSpareRoll() {
-		Game g = new Game();
 		g.roll(1);
 		g.roll(9);
 		g.roll(4);
