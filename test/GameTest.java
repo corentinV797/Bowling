@@ -22,5 +22,18 @@ class GameTest {
 		}
 		assertEquals(20, g.score());
 	}
+	
+	@Test
+	void oneSpareRoll() {
+		Game g = new Game();
+		g.roll(1);
+		g.roll(9);
+		g.roll(4);
+		g.roll(3);
+		for (int i = 0; i < 16; i++) {
+			g.roll(1);
+		}
+		assertEquals(37, g.score());
+	}
 
 }
