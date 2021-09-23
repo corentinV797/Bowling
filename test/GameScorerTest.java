@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import customException.InvalidPinsDownException;
 import customException.NotEnoughFramesException;
 import customException.TooManyFramesException;
 
@@ -26,6 +27,13 @@ public class GameScorerTest {
 		Game g = new Game();
 		assertThrows(TooManyFramesException.class,
 				() -> gc.read(g, "43 43 43 43 43 43 43 43 43 43 43 43 43"));
+	}
+	
+	@Test
+	void readGameWithInvalidPinsDown() {
+		Game g = new Game();
+		assertThrows(InvalidPinsDownException.class,
+				() -> gc.read(g, "4& 43 43 43 43 43 43 43 43 43 43 43"));
 	}
 
 	@Test

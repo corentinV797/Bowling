@@ -1,3 +1,4 @@
+import customException.InvalidPinsDownException;
 import customException.NotEnoughFramesException;
 import customException.TooManyFramesException;
 
@@ -14,6 +15,9 @@ public class GameScorer {
 	}
 	
 	public void read(Game g, String s) throws Exception {
+		if (s.matches(".*[^\s0-9X/-].*")) {
+			throw new InvalidPinsDownException("Forbidden character");
+		}
 		String split[] = s.split(" ");
 		int frame_counter = 0;
 		for (String str : split) {
