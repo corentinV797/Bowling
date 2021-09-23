@@ -1,5 +1,4 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -197,5 +196,28 @@ public class GameScorerTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	void isPotentialStrikeTest() {
+		assertTrue(gc.isPotentialStrike("X"));
+		assertFalse(gc.isPotentialStrike(""));
+		assertFalse(gc.isPotentialStrike("11"));
+	}
+	
+	@Test
+	void isPotentialSpareTest() {
+		assertTrue(gc.isPotentialSpare("1/"));
+		assertFalse(gc.isPotentialSpare(""));
+		assertFalse(gc.isPotentialSpare("X"));
+		assertFalse(gc.isPotentialSpare("1/2"));
+	}
+	
+	@Test
+	void isPotentialBonusRoundTest() {
+		assertTrue(gc.isPotentialBonusRound("1/1"));
+		assertFalse(gc.isPotentialBonusRound(""));
+		assertFalse(gc.isPotentialBonusRound("X"));
+		assertFalse(gc.isPotentialBonusRound("1/22"));
 	}
 }

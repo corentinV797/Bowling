@@ -33,12 +33,12 @@ public class GameScorer {
 		}
 		
 		for (int i = 0; i < frame_counter; i++) {
-			if (split[i].length() == 1) {
+			if (isPotentialStrike(split[i])) {
 				if(split[i].charAt(0) != 'X') {
 					throw new NotEnoughRollsException("Not enough roll in this frame");
 				}
 				g.roll(10);
-			} else if (split[i].length() == 2) {
+			} else if (isPotentialSpare(split[i])) {
 				if (split[i].charAt(1) == '/') {
 					if (split[i].charAt(0) == 'X' || split[i].charAt(0) == '-' || split[i].charAt(0) == '/') {
 						throw new InvalidFrameException("Invalid Frame");
@@ -52,7 +52,7 @@ public class GameScorer {
 					readAndRoll(g, split[i].charAt(0));
 					readAndRoll(g, split[i].charAt(1));
 				}
-			} else if (split[i].length() == 3) {
+			} else if (isPotentialBonusRound(split[i])) {
 				if (i != 9) {
 					throw new TooManyRollsException("Too many rolls in that frame");
 				} else if (split[i].charAt(0) == '/' || split[i].charAt(0) == 'X' || split[i].charAt(1) != '/' || split[i].charAt(2) == '/' || split[i].charAt(2) == 'X') {
@@ -73,5 +73,17 @@ public class GameScorer {
 		} else {
 			g.roll(Character.getNumericValue(c));
 		}
+	}
+	
+	public boolean isPotentialStrike(String s) {
+		return s.length() == 1;
+	}
+	
+	public boolean isPotentialSpare(String s) {
+		return s.length() == 2;
+	}
+	
+	public boolean isPotentialBonusRound(String s) {
+		return s.length() == 3;
 	}
 }
