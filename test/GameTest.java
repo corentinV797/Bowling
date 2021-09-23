@@ -186,6 +186,17 @@ class GameTest {
 		assertEquals(300, g.score());
 	}
 	
+	@Test
+	void readPerfectGame() {
+		try {
+			g.read("X X X X X X X X X X X X");
+			assertEquals(300, g.score());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	// test case 2
 	@Test
 	void tenPairsOfNineAndMiss() {
