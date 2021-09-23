@@ -10,7 +10,7 @@ public class Game {
 				score+=(10 + getNextFrameScore(frame_number));
 				frame_number++;
 				continue;
-			} else if (frame_score == 10) {
+			} else if (isSpare(frame_number)) {
 				score+=(10 + getNextRollScore(frame_number));
 			} else {
 				score+=getCurrentFrameScore(frame_number);
@@ -22,6 +22,10 @@ public class Game {
 	
 	public void roll(int pins) {
 		rolls[roll_counter++] = pins;
+	}
+	
+	public boolean isSpare(int f) {
+		return getCurrentFrameScore(f) == 10;
 	}
 	
 	public int getCurrentFrameScore(int f) {
