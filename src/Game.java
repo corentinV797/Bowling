@@ -6,7 +6,7 @@ public class Game {
 		int score = 0;
 		int frame_number = 0;
 		for (int frame_counter = 0; frame_counter < 10; frame_counter++) {
-			if (rolls[frame_number] == 10) {
+			if (isStrike(frame_number)) {
 				score+=(10 + getNextFrameScore(frame_number));
 				frame_number++;
 				continue;
@@ -22,6 +22,10 @@ public class Game {
 	
 	public void roll(int pins) {
 		rolls[roll_counter++] = pins;
+	}
+	
+	public boolean isStrike(int f) {
+		return rolls[f] == 10;
 	}
 	
 	public boolean isSpare(int f) {
