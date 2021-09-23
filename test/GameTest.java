@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import customException.NotEnoughFramesException;
+import customException.TooManyFramesException;
 
 class GameTest {
 	private Game g;
@@ -16,6 +17,12 @@ class GameTest {
 	@Test
 	void readEmptyGame() {
 		assertThrows(NotEnoughFramesException.class, () -> g.read(""));
+	}
+	
+	@Test
+	void readGameWithTooManyFrames() {
+		assertThrows(TooManyFramesException.class,
+				() -> g.read("43 43 43 43 43 43 43 43 43 43 43 43 43"));
 	}
 
 	@Test

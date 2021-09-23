@@ -1,4 +1,5 @@
 import customException.NotEnoughFramesException;
+import customException.TooManyFramesException;
 
 public class Game {
 	private int[] rolls = new int[21];
@@ -8,6 +9,8 @@ public class Game {
 		String split[] = s.split(" ");
 		if (split.length < 10) {
 			throw new NotEnoughFramesException("There isn't enough frame in this game");
+		} else if (split.length > 12) ;{
+			throw new TooManyFramesException("There are too many frames in this game");
 		}
 	}
 	
