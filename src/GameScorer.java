@@ -2,6 +2,7 @@ import customException.InvalidPinsDownException;
 import customException.NotEnoughFramesException;
 import customException.NotEnoughRollsException;
 import customException.TooManyFramesException;
+import customException.TooManyRollsException;
 
 public class GameScorer {
 	public int getScore(String s) {
@@ -45,9 +46,14 @@ public class GameScorer {
 					readAndRoll(g, split[i].charAt(1));
 				}
 			} else if (split[i].length() == 3) {
+				if (i != 9) {
+					throw new TooManyRollsException("Too many rolls in that frame");
+				}
 				readAndRoll(g, split[i].charAt(0));
 				g.roll(10 - Character.getNumericValue(split[i].charAt(0)));
 				readAndRoll(g, split[i].charAt(2));
+			} else {
+				throw new TooManyRollsException("Too many rolls in that frame");
 			}
 		}
 	}

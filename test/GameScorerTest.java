@@ -8,6 +8,7 @@ import customException.InvalidPinsDownException;
 import customException.NotEnoughFramesException;
 import customException.NotEnoughRollsException;
 import customException.TooManyFramesException;
+import customException.TooManyRollsException;
 
 public class GameScorerTest {
 	private GameScorer gc;
@@ -46,6 +47,20 @@ public class GameScorerTest {
 				() -> gc.read(g, "-- -- 1 -- -- -- -- -- -- --"));
 		assertThrows(NotEnoughRollsException.class,
 				() -> gc.read(g, "-- -- -- / -- -- -- -- -- --"));
+	}
+	
+	@Test
+	void readGameWithTooManyRollsInOneFrame() {
+		Game g = new Game();
+		assertThrows(TooManyRollsException.class,
+				() -> gc.read(g, "-- --- -- -- -- -- -- -- -- --"));
+		assertThrows(TooManyRollsException.class,
+				() -> gc.read(g, "-- -- 1111 -- -- -- -- -- -- --"));
+		assertThrows(TooManyRollsException.class,
+				() -> gc.read(g, "-- -- -- 1/4 -- -- -- -- -- --"));
+		Game g1 = new Game();
+		assertThrows(TooManyRollsException.class,
+				() -> gc.read(g1, "-- -- -- -- -- -- -- -- -- 1/--"));
 	}
 
 	@Test
