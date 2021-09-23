@@ -56,6 +56,24 @@ class GameTest {
 		g.roll(4);
 		g.roll(3);
 		assertEquals(17, g.score());
+	
+	@Test
+	void onlySparesPlusFive() {
+		for (int i = 0; i < 10; i++) {
+			scoreSpare();
+		}
+		g.roll(5);
+		assertEquals(114, g.score());
+	}
+	
+	@Test
+	void almostPerfectGameBonusSpare() {
+		scoreSeveralPins(9, 10);
+		scoreStrike();
+		scoreSpare();
+		assertEquals(281, g.score());
+	}
+	
 	}
 
 	void scoreSeveralPins(int rolls_number, int value) {
