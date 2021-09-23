@@ -1,6 +1,15 @@
+import customException.NotEnoughFramesException;
+
 public class Game {
 	private int[] rolls = new int[21];
 	private int roll_counter = 0;
+	
+	public void read(String s) throws Exception {
+		String split[] = s.split(" ");
+		if (split.length < 10) {
+			throw new NotEnoughFramesException("There isn't enough frame in this game");
+		}
+	}
 	
 	public int score() {
 		int score = 0;

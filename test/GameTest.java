@@ -3,12 +3,19 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import customException.NotEnoughFramesException;
+
 class GameTest {
 	private Game g;
 	
 	@BeforeEach
 	void createGame() {
 		g = new Game();
+	}
+	
+	@Test
+	void readEmptyGame() {
+		assertThrows(NotEnoughFramesException.class, () -> g.read(""));
 	}
 
 	@Test
