@@ -228,6 +228,17 @@ class GameTest {
 		scoreSeveralPins(21, 5);
 		assertEquals(150, g.score());
 	}
+	
+	@Test
+	void readTenPairsOfFiveFinalFive() {
+		try {
+			g.read("5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5");
+			assertEquals(150, g.score());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	void scoreSeveralPins(int rolls_number, int value) {
 		for (int i = 0; i < rolls_number; i++) {
