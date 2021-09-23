@@ -34,7 +34,7 @@ class GameTest {
 	@Test
 	void readZeroScore() {
 		try {
-			g.read("00 00 00 00 00 00 00 00 00 00");
+			g.read("-- -- -- -- -- -- -- -- -- --");
 			assertEquals(0, g.score());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
