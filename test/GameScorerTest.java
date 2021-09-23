@@ -220,4 +220,25 @@ public class GameScorerTest {
 		assertFalse(gc.isPotentialBonusRound("X"));
 		assertFalse(gc.isPotentialBonusRound("1/22"));
 	}
+	
+	@Test
+	void isStrikeCharTest() {
+		assertTrue(gc.isStrikeChar('X'));
+		assertFalse(gc.isStrikeChar('/'));
+		assertFalse(gc.isStrikeChar('-'));
+	}
+	
+	@Test
+	void isSpareCharTest() {
+		assertTrue(gc.isSpareChar('/'));
+		assertFalse(gc.isSpareChar('X'));
+		assertFalse(gc.isSpareChar('-'));
+	}
+	
+	@Test
+	void isNoHitCharTest() {
+		assertTrue(gc.isNoHitChar('-'));
+		assertFalse(gc.isNoHitChar('/'));
+		assertFalse(gc.isNoHitChar('X'));
+	}
 }

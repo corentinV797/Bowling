@@ -35,21 +35,21 @@ public class GameScorer {
 		for (int i = 0; i < frame_counter; i++) {
 			if (isPotentialStrike(split[i])) {
 				char first_char = split[i].charAt(0);
-				if(first_char != 'X') {
+				if(!isStrikeChar(first_char)) {
 					throw new NotEnoughRollsException("Not enough roll in this frame");
 				}
 				g.roll(10);
 			} else if (isPotentialSpare(split[i])) {
 				char first_char = split[i].charAt(0);
 				char second_char = split[i].charAt(1);
-				if (second_char == '/') {
-					if (first_char == 'X' || first_char == '-' || first_char == '/') {
+				if (isSpareChar(second_char)) {
+					if (isStrikeChar(first_char) || isNoHitChar(first_char) || isSpareChar(first_char)) {
 						throw new InvalidFrameException("Invalid Frame");
 					}
 					readAndRoll(g, first_char);
 					g.roll(10 - Character.getNumericValue(first_char));
 				} else {
-					if (first_char == '/' || first_char == 'X' || second_char == 'X') {
+					if (isSpareChar(first_char) || isStrikeChar(first_char) || isStrikeChar(second_char)) {
 						throw new InvalidFrameException("Invalid Frame");
 					}
 					readAndRoll(g, first_char);
@@ -61,7 +61,7 @@ public class GameScorer {
 				char third_char = split[i].charAt(2);
 				if (i != (10 - 1)) {
 					throw new TooManyRollsException("Too many rolls in that frame");
-				} else if (first_char == '/' || first_char == 'X' || second_char != '/' || third_char == '/' || third_char == 'X') {
+				} else if (isSpareChar(first_char) || isStrikeChar(first_char) || !isSpareChar(second_char) || isSpareChar(third_char) || isStrikeChar(third_char)) {
 					throw new InvalidFrameException("Invalid Frame");
 				}
 				readAndRoll(g, first_char);
@@ -74,7 +74,7 @@ public class GameScorer {
 	}
 	
 	public void readAndRoll(Game g, char c) {
-		if (c == '-') {
+		if (isNoHitChar(c)) {
 			g.roll(0);
 		} else {
 			g.roll(Character.getNumericValue(c));
@@ -91,5 +91,17 @@ public class GameScorer {
 	
 	public boolean isPotentialBonusRound(String s) {
 		return s.length() == 3;
+	}
+	
+	public boolean isStrikeChar(char c) {
+		return c == 'X';
+	}
+	
+	public boolean isSpareChar(char c) {
+		return c == '/';
+	}
+	
+	public boolean isNoHitChar(char c) {
+		return c == '-';
 	}
 }
