@@ -30,24 +30,24 @@ public class GameScorer {
 			throw new TooManyFramesException("There are too many frames in this game");
 		}
 		
-		for (String str : split) {
-			if (str.length() == 1) {
-				if(str.charAt(0) != 'X') {
+		for (int i = 0; i < frame_counter; i++) {
+			if (split[i].length() == 1) {
+				if(split[i].charAt(0) != 'X') {
 					throw new NotEnoughRollsException("Not enough roll in this frame");
 				}
 				g.roll(10);
-			} else if (str.length() == 2) {
-				if (str.charAt(1) == '/') {
-					readAndRoll(g, str.charAt(0));
-					g.roll(10 - Character.getNumericValue(str.charAt(0)));
+			} else if (split[i].length() == 2) {
+				if (split[i].charAt(1) == '/') {
+					readAndRoll(g, split[i].charAt(0));
+					g.roll(10 - Character.getNumericValue(split[i].charAt(0)));
 				} else {
-					readAndRoll(g, str.charAt(0));
-					readAndRoll(g, str.charAt(1));
+					readAndRoll(g, split[i].charAt(0));
+					readAndRoll(g, split[i].charAt(1));
 				}
-			} else if (str.length() == 3) {
-				readAndRoll(g, str.charAt(0));
-				g.roll(10 - Character.getNumericValue(str.charAt(0)));
-				readAndRoll(g, str.charAt(2));
+			} else if (split[i].length() == 3) {
+				readAndRoll(g, split[i].charAt(0));
+				g.roll(10 - Character.getNumericValue(split[i].charAt(0)));
+				readAndRoll(g, split[i].charAt(2));
 			}
 		}
 	}
