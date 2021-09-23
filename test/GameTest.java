@@ -211,6 +211,17 @@ class GameTest {
 		g.roll(0);
 	}
 	
+	@Test
+	void readTenPairsOfNineAndMiss() {
+		try {
+			g.read("9- 9- 9- 9- 9- 9- 9- 9- 9- 9-");
+			assertEquals(90, g.score());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	// test case 3
 	@Test
 	void tenPairsOfFiveFinalFive() {
