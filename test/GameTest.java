@@ -166,6 +166,17 @@ class GameTest {
 		assertEquals(281, g.score());
 	}
 	
+	@Test
+	void readAlmostPerfectGameBonusSpare() {
+		try {
+			g.read("X X X X X X X X X X 1/");
+			assertEquals(281, g.score());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	// test case 1
 	@Test
 	void perfectGame() {
