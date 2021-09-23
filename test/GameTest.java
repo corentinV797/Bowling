@@ -128,6 +128,17 @@ class GameTest {
 	}	
 	
 	@Test
+	void readOneStrikeInLastFrame() {
+		try {
+			g.read("-- -- -- -- -- -- -- -- -- X 43");
+			assertEquals(17, g.score());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
 	void onlySparesPlusFive() {
 		for (int i = 0; i < 10; i++) {
 			scoreSpare();
