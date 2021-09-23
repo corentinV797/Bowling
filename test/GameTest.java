@@ -25,8 +25,7 @@ class GameTest {
 	
 	@Test
 	void oneSpareRoll() {
-		g.roll(1);
-		g.roll(9);
+		scoreSpare();
 		g.roll(4);
 		g.roll(3);
 		scoreSeveralPins(16, 1);
@@ -35,7 +34,7 @@ class GameTest {
 	
 	@Test
 	void oneStrikeRoll() {
-		g.roll(10);
+		scoreStrike();
 		g.roll(4);
 		g.roll(3);
 		scoreSeveralPins(16, 0);
@@ -46,5 +45,14 @@ class GameTest {
 		for (int i = 0; i < rolls_number; i++) {
 			g.roll(value);
 		}
+	}
+	
+	void scoreStrike() {
+		g.roll(10);
+	}
+	
+	void scoreSpare() {
+		g.roll(1);
+		g.roll(9);
 	}
 }
