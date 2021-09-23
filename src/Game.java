@@ -1,49 +1,7 @@
-import customException.NotEnoughFramesException;
-import customException.TooManyFramesException;
-
 public class Game {
 	private int[] rolls = new int[21];
 	private int roll_counter = 0;
-	
-	public void read(String s) throws Exception {
-		String split[] = s.split(" ");
-		int frame_counter = 0;
-		for (String str : split) {
-			frame_counter++;
-		}
-		if (frame_counter < 10) {
-			throw new NotEnoughFramesException("There isn't enough frame in this game");
-		} else if (frame_counter > 12) {
-			throw new TooManyFramesException("There are too many frames in this game");
-		}
-		
-		for (String str : split) {
-			if (str.length() == 1) {
-				roll(10);
-			} else if (str.length() == 2) {
-				if (str.charAt(1) == '/') {
-					readAndRoll(str.charAt(0));
-					roll(10 - Character.getNumericValue(str.charAt(0)));
-				} else {
-					readAndRoll(str.charAt(0));
-					readAndRoll(str.charAt(1));
-				}
-			} else if (str.length() == 3) {
-				readAndRoll(str.charAt(0));
-				roll(10 - Character.getNumericValue(str.charAt(0)));
-				readAndRoll(str.charAt(2));
-			}
-		}
-	}
-	
-	public void readAndRoll(char c) {
-		if (c == '-') {
-			roll(0);
-		} else {
-			roll(Character.getNumericValue(c));
-		}
-	}
-	
+			
 	public int score() {
 		int score = 0;
 		int frame_number = 0;
