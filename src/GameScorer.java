@@ -53,7 +53,7 @@ public class GameScorer {
 					readAndRoll(g, split[i].charAt(1));
 				}
 			} else if (isPotentialBonusRound(split[i])) {
-				if (i != 9) {
+				if (i != (10 - 1)) {
 					throw new TooManyRollsException("Too many rolls in that frame");
 				} else if (split[i].charAt(0) == '/' || split[i].charAt(0) == 'X' || split[i].charAt(1) != '/' || split[i].charAt(2) == '/' || split[i].charAt(2) == 'X') {
 					throw new InvalidFrameException("Invalid Frame");
