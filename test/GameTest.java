@@ -74,6 +74,15 @@ class GameTest {
 		assertEquals(281, g.score());
 	}
 	
+	// test case 1
+	@Test
+	void perfectGame() {
+		scoreSeveralPins(10, 10);
+		scoreStrike();
+		scoreStrike();
+		assertEquals(300, g.score());
+	}
+	
 	}
 
 	void scoreSeveralPins(int rolls_number, int value) {
