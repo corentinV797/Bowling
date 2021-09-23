@@ -7,9 +7,13 @@ public class Game {
 	
 	public void read(String s) throws Exception {
 		String split[] = s.split(" ");
-		if (split.length < 10) {
+		int frame_counter = 0;
+		for (String str : split) {
+			frame_counter++;
+		}
+		if (frame_counter < 10) {
 			throw new NotEnoughFramesException("There isn't enough frame in this game");
-		} else if (split.length > 12) ;{
+		} else if (frame_counter > 12) {
 			throw new TooManyFramesException("There are too many frames in this game");
 		}
 	}
