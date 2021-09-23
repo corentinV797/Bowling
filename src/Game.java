@@ -11,7 +11,7 @@ public class Game {
 				frame_number++;
 				continue;
 			} else if (frame_score == 10) {
-				score+=(10 + rolls[frame_number + 2]);
+				score+=(10 + getNextRollScore(frame_number));
 			} else {
 				score+=getCurrentFrameScore(frame_number);
 			}
@@ -30,5 +30,9 @@ public class Game {
 	
 	public int getNextFrameScore(int f) {
 		return rolls[f + 1] + rolls[f + 2];	
+	}
+	
+	public int getNextRollScore(int f) {
+		return rolls[f + 2];
 	}
 }
