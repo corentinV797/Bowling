@@ -18,13 +18,20 @@ public class Game {
 		}
 		
 		for (String str : split) {
-			for (int i = 0; i < str.length(); i++) {
-				if (str.charAt(i) == '-') {
-					roll(0);
+			if (str.length() == 2) {
 				} else {
-					roll(Character.getNumericValue(str.charAt(i)));
+					readAndRoll(str.charAt(0));
+					readAndRoll(str.charAt(1));
 				}
 			}
+		}
+	}
+	
+	public void readAndRoll(char c) {
+		if (c == '-') {
+			roll(0);
+		} else {
+			roll(Character.getNumericValue(c));
 		}
 	}
 	
