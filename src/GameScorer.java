@@ -34,33 +34,39 @@ public class GameScorer {
 		
 		for (int i = 0; i < frame_counter; i++) {
 			if (isPotentialStrike(split[i])) {
-				if(split[i].charAt(0) != 'X') {
+				char first_char = split[i].charAt(0);
+				if(first_char != 'X') {
 					throw new NotEnoughRollsException("Not enough roll in this frame");
 				}
 				g.roll(10);
 			} else if (isPotentialSpare(split[i])) {
-				if (split[i].charAt(1) == '/') {
-					if (split[i].charAt(0) == 'X' || split[i].charAt(0) == '-' || split[i].charAt(0) == '/') {
+				char first_char = split[i].charAt(0);
+				char second_char = split[i].charAt(1);
+				if (second_char == '/') {
+					if (first_char == 'X' || first_char == '-' || first_char == '/') {
 						throw new InvalidFrameException("Invalid Frame");
 					}
-					readAndRoll(g, split[i].charAt(0));
-					g.roll(10 - Character.getNumericValue(split[i].charAt(0)));
+					readAndRoll(g, first_char);
+					g.roll(10 - Character.getNumericValue(first_char));
 				} else {
-					if (split[i].charAt(0) == '/' || split[i].charAt(0) == 'X' || split[i].charAt(1) == 'X') {
+					if (first_char == '/' || first_char == 'X' || second_char == 'X') {
 						throw new InvalidFrameException("Invalid Frame");
 					}
-					readAndRoll(g, split[i].charAt(0));
-					readAndRoll(g, split[i].charAt(1));
+					readAndRoll(g, first_char);
+					readAndRoll(g, second_char);
 				}
 			} else if (isPotentialBonusRound(split[i])) {
+				char first_char = split[i].charAt(0);
+				char second_char = split[i].charAt(1);
+				char third_char = split[i].charAt(2);
 				if (i != (10 - 1)) {
 					throw new TooManyRollsException("Too many rolls in that frame");
-				} else if (split[i].charAt(0) == '/' || split[i].charAt(0) == 'X' || split[i].charAt(1) != '/' || split[i].charAt(2) == '/' || split[i].charAt(2) == 'X') {
+				} else if (first_char == '/' || first_char == 'X' || second_char != '/' || third_char == '/' || third_char == 'X') {
 					throw new InvalidFrameException("Invalid Frame");
 				}
-				readAndRoll(g, split[i].charAt(0));
-				g.roll(10 - Character.getNumericValue(split[i].charAt(0)));
-				readAndRoll(g, split[i].charAt(2));
+				readAndRoll(g, first_char);
+				g.roll(10 - Character.getNumericValue(first_char));
+				readAndRoll(g, third_char);
 			} else {
 				throw new TooManyRollsException("Too many rolls in that frame");
 			}
