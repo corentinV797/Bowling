@@ -83,6 +83,20 @@ class GameTest {
 		assertEquals(300, g.score());
 	}
 	
+	// test case 2
+	@Test
+	void tenPairsOfNineAndMiss() {
+		for (int i = 0; i < 10; i++) {
+			nineAndMiss();
+		}
+		assertEquals(90, g.score());
+	}
+	
+	void nineAndMiss() {
+		g.roll(9);
+		g.roll(0);
+	}
+	
 	}
 
 	void scoreSeveralPins(int rolls_number, int value) {
