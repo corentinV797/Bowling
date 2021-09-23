@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import customException.InvalidPinsDownException;
 import customException.NotEnoughFramesException;
+import customException.NotEnoughRollsException;
 import customException.TooManyFramesException;
 
 public class GameScorerTest {
@@ -34,6 +35,17 @@ public class GameScorerTest {
 		Game g = new Game();
 		assertThrows(InvalidPinsDownException.class,
 				() -> gc.read(g, "4& 43 43 43 43 43 43 43 43 43 43 43"));
+	}
+	
+	@Test
+	void readGameWithOneFrameWithOnlyOneRoll() {
+		Game g = new Game();
+		assertThrows(NotEnoughRollsException.class,
+				() -> gc.read(g, "-- - -- -- -- -- -- -- -- --"));
+		assertThrows(NotEnoughRollsException.class,
+				() -> gc.read(g, "-- -- 1 -- -- -- -- -- -- --"));
+		assertThrows(NotEnoughRollsException.class,
+				() -> gc.read(g, "-- -- -- / -- -- -- -- -- --"));
 	}
 
 	@Test

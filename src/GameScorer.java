@@ -1,5 +1,6 @@
 import customException.InvalidPinsDownException;
 import customException.NotEnoughFramesException;
+import customException.NotEnoughRollsException;
 import customException.TooManyFramesException;
 
 public class GameScorer {
@@ -31,6 +32,9 @@ public class GameScorer {
 		
 		for (String str : split) {
 			if (str.length() == 1) {
+				if(str.charAt(0) != 'X') {
+					throw new NotEnoughRollsException("Not enough roll in this frame");
+				}
 				g.roll(10);
 			} else if (str.length() == 2) {
 				if (str.charAt(1) == '/') {
