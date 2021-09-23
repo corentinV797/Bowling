@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import customException.InvalidFrameException;
 import customException.InvalidPinsDownException;
 import customException.NotEnoughFramesException;
 import customException.NotEnoughRollsException;
@@ -61,6 +62,28 @@ public class GameScorerTest {
 		Game g1 = new Game();
 		assertThrows(TooManyRollsException.class,
 				() -> gc.read(g1, "-- -- -- -- -- -- -- -- -- 1/--"));
+	}
+	
+	@Test
+	void readGameWithInvalidFrameException() {
+		Game g = new Game();
+		assertThrows(InvalidFrameException.class,
+				() -> gc.read(g, "-- /- -- -- -- -- -- -- -- --"));
+		assertThrows(InvalidFrameException.class,
+				() -> gc.read(g, "-- -X -- -- -- -- -- -- -- --"));
+		assertThrows(InvalidFrameException.class,
+				() -> gc.read(g, "-- -/ -- -- -- -- -- -- -- --"));
+		assertThrows(InvalidFrameException.class,
+				() -> gc.read(g, "-- // -- -- -- -- -- -- -- --"));
+		Game g1 = new Game();
+		assertThrows(InvalidFrameException.class,
+				() -> gc.read(g1, "-- -- -- -- -- -- -- -- -- -//"));
+		Game g2 = new Game();
+		assertThrows(InvalidFrameException.class,
+				() -> gc.read(g2, "-- -- -- -- -- -- -- -- -- /--"));
+		Game g3 = new Game();
+		assertThrows(InvalidFrameException.class,
+				() -> gc.read(g3, "-- -- -- -- -- -- -- -- -- -/X"));
 	}
 
 	@Test

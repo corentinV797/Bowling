@@ -1,3 +1,4 @@
+import customException.InvalidFrameException;
 import customException.InvalidPinsDownException;
 import customException.NotEnoughFramesException;
 import customException.NotEnoughRollsException;
@@ -39,15 +40,23 @@ public class GameScorer {
 				g.roll(10);
 			} else if (split[i].length() == 2) {
 				if (split[i].charAt(1) == '/') {
+					if (split[i].charAt(0) == 'X' || split[i].charAt(0) == '-' || split[i].charAt(0) == '/') {
+						throw new InvalidFrameException("Invalid Frame");
+					}
 					readAndRoll(g, split[i].charAt(0));
 					g.roll(10 - Character.getNumericValue(split[i].charAt(0)));
 				} else {
+					if (split[i].charAt(0) == '/' || split[i].charAt(0) == 'X' || split[i].charAt(1) == 'X') {
+						throw new InvalidFrameException("Invalid Frame");
+					}
 					readAndRoll(g, split[i].charAt(0));
 					readAndRoll(g, split[i].charAt(1));
 				}
 			} else if (split[i].length() == 3) {
 				if (i != 9) {
 					throw new TooManyRollsException("Too many rolls in that frame");
+				} else if (split[i].charAt(0) == '/' || split[i].charAt(0) == 'X' || split[i].charAt(1) != '/' || split[i].charAt(2) == '/' || split[i].charAt(2) == 'X') {
+					throw new InvalidFrameException("Invalid Frame");
 				}
 				readAndRoll(g, split[i].charAt(0));
 				g.roll(10 - Character.getNumericValue(split[i].charAt(0)));
