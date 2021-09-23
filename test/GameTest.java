@@ -148,6 +148,17 @@ class GameTest {
 	}
 	
 	@Test
+	void readOnlySparesPlusFive() {
+		try {
+			g.read("1/ 1/ 1/ 1/ 1/ 1/ 1/ 1/ 1/ 1/5");
+			assertEquals(114, g.score());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
 	void almostPerfectGameBonusSpare() {
 		scoreSeveralPins(9, 10);
 		scoreStrike();
