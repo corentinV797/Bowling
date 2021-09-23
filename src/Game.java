@@ -28,6 +28,10 @@ public class Game {
 					readAndRoll(str.charAt(0));
 					readAndRoll(str.charAt(1));
 				}
+			} else if (str.length() == 3) {
+				readAndRoll(str.charAt(0));
+				roll(10 - Character.getNumericValue(str.charAt(0)));
+				readAndRoll(str.charAt(2));
 			}
 		}
 	}

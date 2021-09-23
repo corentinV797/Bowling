@@ -108,6 +108,17 @@ class GameTest {
 	}
 	
 	@Test
+	void readOneSpareInLastFrame() {
+		try {
+			g.read("-- -- -- -- -- -- -- -- -- 1/4");
+			assertEquals(14, g.score());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
 	void oneStrikeInLastFrame() {
 		scoreSeveralPins(18, 0);
 		scoreStrike();
