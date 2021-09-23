@@ -18,7 +18,7 @@ public class GameScorer {
 	}
 	
 	public void read(Game g, String s) throws Exception {
-		if (s.matches(".*[^\s0-9X/-].*")) {
+		if (s.matches(".*[^\s0-9X/-].*")) { // everything but space character, any digit, X character, / character or - character 
 			throw new InvalidPinsDownException("Forbidden character");
 		}
 		String split[] = s.split(" ");
