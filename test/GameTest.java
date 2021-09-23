@@ -106,6 +106,46 @@ class GameTest {
 		assertEquals(150, g.score());
 	}
 	
+	@Test()
+	void isStrikeTest() {
+		scoreStrike();
+		scoreSeveralPins(18, 0);
+		assertTrue(g.isStrike(0));
+		assertFalse(g.isStrike(1));
+	}
+	
+	@Test()
+	void isSpareTest() {
+		scoreSpare();
+		scoreSeveralPins(18, 0);
+		assertTrue(g.isSpare(0));
+		assertFalse(g.isSpare(1));
+	}
+	
+	@Test()
+	void getCurrentFrameScoreTest() {
+		g.roll(4);
+		g.roll(3);
+		scoreSeveralPins(18, 0);
+		assertEquals(7, g.getCurrentFrameScore(0));
+	}
+	
+	@Test()
+	void getNextFrameScoreTest() {
+		scoreStrike();
+		g.roll(4);
+		g.roll(3);
+		scoreSeveralPins(16, 0);
+		assertEquals(7, g.getNextFrameScore(0));
+	}
+	
+	@Test()
+	void getNextRollScoreTest() {
+		scoreSpare();
+		g.roll(4);
+		scoreSeveralPins(17, 0);
+		assertEquals(4, g.getNextRollScore(0));
+	}
 	void scoreSeveralPins(int rolls_number, int value) {
 		for (int i = 0; i < rolls_number; i++) {
 			g.roll(value);
