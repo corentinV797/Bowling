@@ -16,6 +16,16 @@ public class Game {
 		} else if (frame_counter > 12) {
 			throw new TooManyFramesException("There are too many frames in this game");
 		}
+		
+		for (String str : split) {
+			for (int i = 0; i < str.length(); i++) {
+				if (str.charAt(i) == '-') {
+					roll(0);
+				} else {
+					roll(Character.getNumericValue(str.charAt(i)));
+				}
+			}
+		}
 	}
 	
 	public int score() {
