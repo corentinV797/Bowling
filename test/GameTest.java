@@ -49,6 +49,17 @@ class GameTest {
 	}
 	
 	@Test
+	void readOnePinEachRoll() {
+		try {
+			g.read("11 11 11 11 11 11 11 11 11 11");
+			assertEquals(20, g.score());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
 	void oneSpareRoll() {
 		scoreSpare();
 		g.roll(4);
