@@ -241,4 +241,10 @@ public class GameScorerTest {
 		assertFalse(gc.isNoHitChar('/'));
 		assertFalse(gc.isNoHitChar('X'));
 	}
+	
+	@Test
+	void getFrameCounterTest() {
+		assertEquals(2, gc.getFrameCounter("X X".split(" ")));
+		assertEquals(10, gc.getFrameCounter("9- 9- 9- 9- 9- 9- 9- 9- 9- 9-".split(" ")));
+	}
 }

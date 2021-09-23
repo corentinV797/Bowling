@@ -22,10 +22,7 @@ public class GameScorer {
 			throw new InvalidPinsDownException("Forbidden character");
 		}
 		String split[] = s.split(" ");
-		int frame_counter = 0;
-		for (String str : split) {
-			frame_counter++;
-		}
+		int frame_counter = getFrameCounter(split);
 		if (frame_counter < Constants.FRAME_NUMBER) {
 			throw new NotEnoughFramesException("There isn't enough frame in this game (number of frames = " + frame_counter + ")");
 		} else if (frame_counter > (Constants.FRAME_NUMBER + 2)) {
@@ -103,5 +100,13 @@ public class GameScorer {
 	
 	public boolean isNoHitChar(char c) {
 		return c == Constants.NOHIT_CHAR;
+	}
+	
+	public int getFrameCounter(String[] split){
+		int frame_counter = 0;
+		for (String str : split) {
+			frame_counter++;
+		}
+		return frame_counter;
 	}
 }
