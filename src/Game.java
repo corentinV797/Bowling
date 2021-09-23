@@ -6,7 +6,6 @@ public class Game {
 		int score = 0;
 		int frame_number = 0;
 		for (int frame_counter = 0; frame_counter < 10; frame_counter++) {
-			int frame_score = rolls[frame_number] + rolls[frame_number + 1];
 			if (rolls[frame_number] == 10) {
 				score+=(10 + rolls[frame_number + 1] + rolls[frame_number + 2]);
 				frame_number++;
@@ -14,7 +13,7 @@ public class Game {
 			} else if (frame_score == 10) {
 				score+=(10 + rolls[frame_number + 2]);
 			} else {
-				score+=frame_score;
+				score+=getCurrentFrameScore(frame_number);
 			}
 			frame_number+=2;
 		}
@@ -23,5 +22,9 @@ public class Game {
 	
 	public void roll(int pins) {
 		rolls[roll_counter++] = pins;
+	}
+	
+	public int getCurrentFrameScore(int f) {
+		return rolls[f] + rolls[f + 1];
 	}
 }
