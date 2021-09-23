@@ -18,7 +18,9 @@ public class Game {
 		}
 		
 		for (String str : split) {
-			if (str.length() == 2) {
+			if (str.length() == 1) {
+				roll(10);
+			} else if (str.length() == 2) {
 				if (str.charAt(1) == '/') {
 					readAndRoll(str.charAt(0));
 					roll(10 - Character.getNumericValue(str.charAt(0)));
