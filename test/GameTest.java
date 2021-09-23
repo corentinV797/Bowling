@@ -56,6 +56,7 @@ class GameTest {
 		g.roll(4);
 		g.roll(3);
 		assertEquals(17, g.score());
+	}	
 	
 	@Test
 	void onlySparesPlusFive() {
@@ -97,6 +98,11 @@ class GameTest {
 		g.roll(0);
 	}
 	
+	// test case 3
+	@Test
+	void tenPairsOfFiveFinalFive() {
+		scoreSeveralPins(21, 5);
+		assertEquals(150, g.score());
 	}
 
 	void scoreSeveralPins(int rolls_number, int value) {
