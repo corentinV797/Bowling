@@ -40,6 +40,14 @@ class GameTest {
 		scoreSeveralPins(16, 0);
 		assertEquals(24, g.score());
 	}
+	
+	@Test
+	void oneSpareInLastFrame() {
+		scoreSeveralPins(18, 0);
+		scoreSpare();
+		g.roll(4);
+		assertEquals(14, g.score());
+	}
 
 	void scoreSeveralPins(int rolls_number, int value) {
 		for (int i = 0; i < rolls_number; i++) {
