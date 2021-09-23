@@ -26,9 +26,9 @@ public class GameScorer {
 		for (String str : split) {
 			frame_counter++;
 		}
-		if (frame_counter < 10) {
+		if (frame_counter < Constants.FRAME_NUMBER) {
 			throw new NotEnoughFramesException("There isn't enough frame in this game");
-		} else if (frame_counter > 12) {
+		} else if (frame_counter > (Constants.FRAME_NUMBER + 2)) {
 			throw new TooManyFramesException("There are too many frames in this game");
 		}
 		
@@ -38,7 +38,7 @@ public class GameScorer {
 				if(!isStrikeChar(first_char)) {
 					throw new NotEnoughRollsException("Not enough roll in this frame");
 				}
-				g.roll(10);
+				g.roll(Constants.STRIKE_SCORE);
 			} else if (isPotentialSpare(split[i])) {
 				char first_char = split[i].charAt(0);
 				char second_char = split[i].charAt(1);
@@ -47,7 +47,7 @@ public class GameScorer {
 						throw new InvalidFrameException("Invalid Frame");
 					}
 					readAndRoll(g, first_char);
-					g.roll(10 - Character.getNumericValue(first_char));
+					g.roll(Constants.SPARE_SCORE - Character.getNumericValue(first_char));
 				} else {
 					if (isSpareChar(first_char) || isStrikeChar(first_char) || isStrikeChar(second_char)) {
 						throw new InvalidFrameException("Invalid Frame");
@@ -59,13 +59,13 @@ public class GameScorer {
 				char first_char = split[i].charAt(0);
 				char second_char = split[i].charAt(1);
 				char third_char = split[i].charAt(2);
-				if (i != (10 - 1)) {
+				if (i != (Constants.FRAME_NUMBER - 1)) {
 					throw new TooManyRollsException("Too many rolls in that frame");
 				} else if (isSpareChar(first_char) || isStrikeChar(first_char) || !isSpareChar(second_char) || isSpareChar(third_char) || isStrikeChar(third_char)) {
 					throw new InvalidFrameException("Invalid Frame");
 				}
 				readAndRoll(g, first_char);
-				g.roll(10 - Character.getNumericValue(first_char));
+				g.roll(Constants.SPARE_SCORE - Character.getNumericValue(first_char));
 				readAndRoll(g, third_char);
 			} else {
 				throw new TooManyRollsException("Too many rolls in that frame");
@@ -75,7 +75,7 @@ public class GameScorer {
 	
 	public void readAndRoll(Game g, char c) {
 		if (isNoHitChar(c)) {
-			g.roll(0);
+			g.roll(Constants.NO_HIT_SCORE);
 		} else {
 			g.roll(Character.getNumericValue(c));
 		}
@@ -94,14 +94,14 @@ public class GameScorer {
 	}
 	
 	public boolean isStrikeChar(char c) {
-		return c == 'X';
+		return c == Constants.STRIKE_CHAR;
 	}
 	
 	public boolean isSpareChar(char c) {
-		return c == '/';
+		return c == Constants.SPARE_CHAR;
 	}
 	
 	public boolean isNoHitChar(char c) {
-		return c == '-';
+		return c == Constants.NOHIT_CHAR;
 	}
 }
