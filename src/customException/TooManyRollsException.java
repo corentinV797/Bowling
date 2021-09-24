@@ -1,5 +1,9 @@
 package customException;
-
+/**
+ * 
+ * @author Corentin V
+ *
+ */
 public class TooManyRollsException extends Exception {
 
 	/**

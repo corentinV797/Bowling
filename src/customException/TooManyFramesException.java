@@ -1,4 +1,9 @@
 package customException;
+/**
+ * 
+ * @author Corentin V
+ *
+ */
 public class TooManyFramesException extends Exception {
 	/**
 	 * 
