@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @author Corentin V
+ *
+ */
 public class Constants {
 	public static final int FRAME_NUMBER = 10;
 	public static final int STRIKE_SCORE = 10;
