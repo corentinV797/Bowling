@@ -86,7 +86,7 @@ public class GameScorerTest {
 	}
 
 	@Test
-	void readZeroScore() {
+	void getScoreGameZeroScore() {
 		try {
 			assertEquals(0, gc.getScore("-- -- -- -- -- -- -- -- -- --"));
 		} catch (Exception e) {
@@ -96,7 +96,7 @@ public class GameScorerTest {
 	}
 		
 	@Test
-	void readOnePinEachRoll() {
+	void getScoreGameOnePinEachRoll() {
 		try {
 			assertEquals(20, gc.getScore("11 11 11 11 11 11 11 11 11 11"));
 		} catch (Exception e) {
@@ -106,7 +106,7 @@ public class GameScorerTest {
 	}
 		
 	@Test
-	void readOneSpareRoll() {
+	void getScoreGameOneSpareRoll() {
 		try {
 			assertEquals(37, gc.getScore("1/ 43 11 11 11 11 11 11 11 11"));
 		} catch (Exception e) {
@@ -116,7 +116,7 @@ public class GameScorerTest {
 	}
 	
 	@Test
-	void readOneStrikeRoll() {
+	void getScoreGameOneStrikeRoll() {
 		try {
 			assertEquals(24, gc.getScore("X 43 -- -- -- -- -- -- -- --"));
 		} catch (Exception e) {
@@ -126,7 +126,7 @@ public class GameScorerTest {
 	}
 		
 	@Test
-	void readOneSpareInLastFrame() {
+	void getScoreGameOneSpareInLastFrame() {
 		try {
 			assertEquals(14, gc.getScore("-- -- -- -- -- -- -- -- -- 1/4"));
 		} catch (Exception e) {
@@ -136,7 +136,7 @@ public class GameScorerTest {
 	}
 	
 	@Test
-	void readOneStrikeInLastFrame() {
+	void getScoreGameOneStrikeInLastFrame() {
 		try {
 			assertEquals(17, gc.getScore("-- -- -- -- -- -- -- -- -- X 43"));
 		} catch (Exception e) {
@@ -146,7 +146,7 @@ public class GameScorerTest {
 	}
 		
 	@Test
-	void readOnlySparesPlusFive() {
+	void getScoreGameOnlySparesPlusFive() {
 		try {
 			assertEquals(114, gc.getScore("1/ 1/ 1/ 1/ 1/ 1/ 1/ 1/ 1/ 1/5"));
 		} catch (Exception e) {
@@ -156,7 +156,7 @@ public class GameScorerTest {
 	}	
 	
 	@Test
-	void readAlmostPerfectGameBonusSpare() {
+	void getScoreGameAlmostPerfectGameBonusSpare() {
 		try {
 			assertEquals(281, gc.getScore("X X X X X X X X X X 1/"));
 		} catch (Exception e) {
@@ -167,7 +167,7 @@ public class GameScorerTest {
 	
 	// test case 1
 	@Test
-	void readPerfectGame() {
+	void getScoreGamePerfectGame() {
 		try {
 			assertEquals(300, gc.getScore("X X X X X X X X X X X X"));
 		} catch (Exception e) {
@@ -178,7 +178,7 @@ public class GameScorerTest {
 	
 	// test case 2
 	@Test
-	void readTenPairsOfNineAndMiss() {
+	void getScoreGameTenPairsOfNineAndMiss() {
 		try {
 			assertEquals(90, gc.getScore("9- 9- 9- 9- 9- 9- 9- 9- 9- 9-"));
 		} catch (Exception e) {
@@ -189,7 +189,7 @@ public class GameScorerTest {
 	
 	// test case 3
 	@Test
-	void readTenPairsOfFiveFinalFive() {
+	void getScoreGameTenPairsOfFiveFinalFive() {
 		try {
 			assertEquals(150, gc.getScore("5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5"));
 		} catch (Exception e) {
