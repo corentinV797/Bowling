@@ -36,6 +36,8 @@ What makes this game interesting to score is the lookahead in the scoring for st
 
 # **Solution**
 
+This kata was Test Driven Developped in regular Java with JUnit tests.
+
 **Main Classes**
 
 - Game class purpose is to process every roll input (int format) and to calculate the score of the game (core class)
